@@ -23,4 +23,13 @@ export class AppComponent {
   constructor(){
     console.log("Constructor called");
   }
+
+  get2(){
+    return 2;
+  }
+
+  names = ['Ime1','Ime2','Ime3','Ime4'];
+
+  showTitle = true;
+
 }

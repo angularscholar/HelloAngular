@@ -1,1 +1,25 @@
 <h1>This is my {{title}} main component</h1>
+
+<h2>Function call example</h2>
+{{1+1+get2()}}
+
+<h2>Iterate over array example</h2>
+<ul>
+    <li *ngFor = 'let ime of names'>
+        {{ime}}
+    </li>
+</ul>
+
+<h2>Condition example</h2>
+<p *ngIf='showTitle'>
+    {{title}}
+</p>
+
+<h2>Styling examples</h2>
+<h3>Without sudo select all elements will be styled individualy</h3>
+<h4>Angular je najbolja aplikacija, btw pomijeri me desno</h4>
+<h4>Drugi tekst</h4>
+<h3>Components under this one, don't infer styles</h3>
+<app-subcomponent></app-subcomponent>
+
+<router-outlet></router-outlet>
