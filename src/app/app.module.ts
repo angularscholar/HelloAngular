@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { DummyModule } from 'src/dummy/dummy.module';
 import { SubcomponentComponent } from './subcomponent/subcomponent.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -35,12 +36,12 @@ const routes:Routes = [
   {path:"**",component:NotfoundComponent}
 ];
 
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
+    DummyModule,
     BrowserModule,
-    DummyModule
+    HttpClientModule
   ],
 
   declarations: [

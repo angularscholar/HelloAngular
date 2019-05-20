@@ -1,3 +1,4 @@
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component } from '@angular/core';
 
 /*
@@ -20,9 +21,35 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'ProjectFrontend';
 
-  constructor(){
+  constructor(private _http: HttpClient){
     console.log("Constructor called");
   }
+
+  getToken(){
+    this._http.post(
+      "http://localhost:8080/oauth/token?grant_type=password&username=goran&password=12345",
+
+      {withCredentials: true},
+      
+      {headers: new HttpHeaders(
+        {'Authorization':'Basic ' + btoa('client:secret')}
+      )}
+    ).subscribe(res => {console.log(res);this.getUserNameOfToken(res)});
+  }
+
+  getUserNameOfToken(tokenInfo){
+    this._http.post(
+      "http://localhost:8080/api/getUserName",
+
+      {withCredentials: true},
+      
+      {headers: new HttpHeaders(
+        {'Authorization':'Bearer ' + tokenInfo['access_token']}
+      )}
+    ).subscribe(res => {console.log(res)});
+
+  }
+
 
   get2(){
     return 2;
