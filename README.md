@@ -27,3 +27,15 @@ Routing allows us to navigate to a specific component by entering a url in the b
 This is similar to what we can do with spring. In order to use routing we have to import and configure the Angular's RoutinghModule in our main module.
 
 Wildcard is used to map all requests to a specific component.
+
+<h2>Basic Auth</h2>
+It's implemented in src/app/app.component.ts getToken() method, after successfully authorization
+actuall call to Rest API is done.
+
+<h2>Service</h2>
+Typescript class decorated with @Injectable annotation which can be injected. That Service also needs to be declared either at component or module level under the providers section.
+To inject a service as a dependecy into a class simply import it and declare it as a constructor argument.
+
+<h2>Dependecy Injection</h2>
+The act of injecting objects into other objests.
+Dependency injection in Angular are singletons

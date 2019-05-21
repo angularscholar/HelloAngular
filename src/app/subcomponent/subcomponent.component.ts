@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-subcomponent',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubcomponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService:TokenService) { 
+    console.log(tokenService.getToken());
+  }
 
   ngOnInit() {
   }

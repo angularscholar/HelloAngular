@@ -1,5 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component } from '@angular/core';
+import { TokenService } from './services/token.service';
 
 /*
 *
@@ -11,30 +12,28 @@ import { Component } from '@angular/core';
 *   styles   - CSS used
 * Running a component - it must be referenced in html using the component selector
 *
+* Service TokenService is added in Providers section. It's injected in constructor,
+* observe 2 ways of injectin either using private,public access modifier or explicitly assigning variable to a service object
 */  
 
 @Component({
   selector: 'app-root',
+  providers: [TokenService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title:string = 'ProjectFrontend';
-
-  constructor(private _http: HttpClient){
+  
+  tokenService:TokenService = null;
+  constructor(private _http: HttpClient, tokenService: TokenService){
     console.log("Constructor called");
+    this.tokenService = tokenService;
+    
   }
 
   getToken(){
-    this._http.post(
-      "http://localhost:8080/oauth/token?grant_type=password&username=goran&password=12345",
-
-      {withCredentials: true},
-      
-      {headers: new HttpHeaders(
-        {'Authorization':'Basic ' + btoa('client:secret')}
-      )}
-    ).subscribe(res => {console.log(res);this.getUserNameOfToken(res)});
+    this.tokenService.getToken().subscribe(res => {console.log(res);this.getUserNameOfToken(res)});
   }
 
   getUserNameOfToken(tokenInfo){
